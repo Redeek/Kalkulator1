@@ -10,21 +10,41 @@ import SwiftUI
 struct ButtonView: View {
     var name: String
     @Binding var text: String
-    @Binding var val1: Int
-    @Binding var val2: Int
+    @Binding var val1: String
+    @Binding var val2: String
     @Binding var firstVal: Bool
+    @Binding var znak: String
+    var numbers = ["1","2","3","4","5","6","7","8","9","0"]
+    var key = ["+","-","*","/"]
+    var sinus = "sin"
     var body: some View {
+        
         Button(name){
-            text = name
-            if(firstVal){
-                val1 = Int(name)!
+            if(name == sinus){
+                text = val1
+                znak = sinus
             }else{
-                val2 = Int(name)!
+                if(firstVal){
+                    if(numbers.contains(name)){
+                        val1 += name
+                        text = val1
+                    }
+                    else if(key.contains(name)){
+                        firstVal.toggle()
+                        znak = name
+                        text = ""
+                    }
+                }else if (numbers.contains(name)){
+                    val2 += name
+                    text = val2
+                }
             }
-            firstVal.toggle()
+            
+            
         }
-            .frame(width: 130, height: 60)
-            .border(.blue, width: 4)
+            .frame(width: 100, height: 60)
+            .border(.black, width: 2)
             .font(.largeTitle)
     }
 }
+

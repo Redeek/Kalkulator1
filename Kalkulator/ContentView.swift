@@ -9,23 +9,51 @@ import SwiftUI
 
 struct ContentView: View {
     @State var text: String = ""
-    @State var val1: Int = 0
-    @State var val2: Int = 0
+    @State var val1: String = ""
+    @State var val2: String = ""
+    @State var znak: String = ""
     @State var firstVal: Bool = true
+    
+    var buttonrow = [
+        ["1","2","3"],
+        ["4","5","6"],
+        ["7","8","9"],
+        ["0","+","-"],
+        ["*","/","sin"]
+    ]
+    
     var body: some View {
         VStack {
-            
+            Spacer()
+            Text("Kalkulator")
+                .font(.largeTitle)
+                Spacer()
             Text(text)
-        }
-        .padding()
-        HStack{
-            ForEach(0..<3, id: \.self){ index in
-                ButtonView(name: String(index), text: $text, val1:$val1, val2: $val2, firstVal: $firstVal)}
+                    .frame(width: 315, height: 60)
+                    .border(.black, width: 2)
+                    .font(.largeTitle)
+            
         }
         
-        Button("SUMA"){
-            text = String(Calculation().addTwoNumbers(of: val1, with: val2))
+            ForEach(buttonrow, id: \.self){ row in
+                HStack{
+                    ForEach(row , id: \.self){ symbol in
+                        ButtonView(name: String(symbol), text: $text, val1:$val1, val2: $val2, firstVal: $firstVal, znak: $znak)}
+                }
+            }
+        
+        Button("Oblicz"){
+            
+                text = String(Calculation().domath(of: val1, with: val2, znak))
+            
+            val1 = ""
+            val2 = ""
+            znak = ""
+            firstVal = true
         }
+        .frame(width: 315, height: 60)
+        .border(.black, width: 2)
+        .font(.largeTitle)
         
     }
 }

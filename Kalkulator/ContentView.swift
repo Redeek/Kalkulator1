@@ -45,7 +45,6 @@ struct ContentView: View {
         Button("Oblicz"){
             
                 text = String(Calculation().domath(of: val1, with: val2, znak))
-            
             val1 = ""
             val2 = ""
             znak = ""

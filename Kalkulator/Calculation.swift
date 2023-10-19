@@ -26,7 +26,6 @@ struct Calculation{
             return "error"
         }
     }
-    
     func plus(of firstVal:String, with SecondVal:String) -> Double{
         return Double(firstVal)! + Double(SecondVal)!;
     }

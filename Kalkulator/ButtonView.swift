@@ -18,7 +18,6 @@ struct ButtonView: View {
     var key = ["+","-","*","/"]
     var sinus = "sin"
     var body: some View {
-        
         Button(name){
             if(name == sinus){
                 text = val1
